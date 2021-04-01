@@ -14,5 +14,11 @@ module.exports = {
   plugins: ["react"],
   rules: {
     quotes: [1, "double"],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+  },
+  settings: {
+    react: {
+      version: "999.999.999",
+    },
   },
 };

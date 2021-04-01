@@ -13,7 +13,8 @@
     "@typescript-eslint/parser": "^4.20.0"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "client/**/*.js": "eslint --fix",
+    "server/**/*.js": "eslint --fix"
   },
   "scripts": {
     "prepare": "husky install"
