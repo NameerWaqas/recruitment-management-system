@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
-// let globalTheme = "light";
 /**
  * @param props React Props
  * @param {children} props.children
