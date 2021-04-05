@@ -58,6 +58,9 @@
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
+    },
+    "type": {
+      "type": "string"
     }
   }
 }
