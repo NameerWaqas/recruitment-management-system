@@ -1,4 +1,0 @@
-# ignoring build files of client 
-build
-src/index.js
-src/reportWebVitals.js
