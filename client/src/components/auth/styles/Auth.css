@@ -1,0 +1,16 @@
+#authContainer {
+  position: fixed;
+  width: 100%;
+  height: 90vh;
+  top: 10vh;
+  background-color: #e9ecef;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  text-decoration: none;
+  color: black;
+}
