@@ -13,7 +13,7 @@ function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("");
-  const [password, setPassword] = useState("candidate");
+  const [password, setPassword] = useState("recruiter");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const mutation = useMutation(async (user) => {
@@ -63,12 +63,35 @@ function RegistrationForm() {
           name="select"
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="candidate">Register as candidate</option>
           <option value="recruiter">Register as recruiter</option>
+          <option value="candidate">Register as candidate</option>
         </Input>
       </InputGroup>
-
       <br />
+      {type === "candidate" ? (
+        <>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>@</InputGroupText>
+            </InputGroupAddon>
+            <Input
+              type="select"
+              name="select"
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="recruiter" disabled>
+                Job type
+              </option>
+              <option value="recruiter">Full time job</option>
+              <option value="candidate">Part time job</option>
+              <option value="candidate">Remote job</option>
+              <option value="candidate">Freelancing</option>
+              <option value="candidate">Internship</option>
+            </Input>
+          </InputGroup>
+          <br />
+        </>
+      ) : null}
       <InputGroup>
         <InputGroupAddon addonType="prepend">
           <InputGroupText>@</InputGroupText>

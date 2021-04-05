@@ -7,15 +7,16 @@ import {
   ModalBody,
   NavLink,
 } from "reactstrap";
-import { Switch, Route, useHistory, Link } from "react-router-dom";
+import { Switch, Route, useHistory, Link, Redirect } from "react-router-dom";
 import classnames from "classnames";
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
 
 // styles
 import "./styles/Auth.css";
+import { useSelector } from "react-redux";
 
-function Auth() {
+function AuthContent() {
   const [isShowingModal, setShowModal] = useState(true);
   const [activeTab, setActiveTab] = useState("1");
   const history = useHistory();
@@ -38,11 +39,11 @@ function Auth() {
               onClick={() => {
                 toggleTabs("1");
               }}
-              to="/auth/register"
+              to="/auth/login"
               className="link"
             >
               <NavLink className={classnames({ active: activeTab === "1" })}>
-                Register
+                Login
               </NavLink>
             </Link>
           </NavItem>
@@ -52,23 +53,36 @@ function Auth() {
               onClick={() => {
                 toggleTabs("2");
               }}
-              to="/auth/login"
+              to="/auth/register"
               className="link"
             >
               <NavLink className={classnames({ active: activeTab === "2" })}>
-                Login
+                Register
               </NavLink>
             </Link>
           </NavItem>
         </Nav>
         <ModalBody>
           <Switch>
-            <Route exact path="/auth/register" component={RegistrationForm} />
             <Route exact path="/auth/login" component={LoginForm} />
+            <Route exact path="/auth/register" component={RegistrationForm} />
           </Switch>
         </ModalBody>
       </Modal>
     </div>
+  );
+}
+
+function Auth() {
+  const { user } = useSelector((state) => state.auth);
+  return (
+    <>
+      {user && localStorage.getItem("jwt") ? (
+        <Redirect to="/dashboard/user" />
+      ) : (
+        <AuthContent />
+      )}
+    </>
   );
 }
 

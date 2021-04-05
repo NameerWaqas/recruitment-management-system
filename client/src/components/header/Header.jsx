@@ -9,9 +9,15 @@ function Header() {
         <h3 id="title">RMS</h3>
       </Link>
       <span>
-        <Link to="/auth/register" className="link">
-          <span className="navButton">Login/Register</span>
-        </Link>
+        {localStorage.getItem("jwt") ? (
+          <Link to="/dashboard/user" className="link">
+            <span className="navButton">Dashboard</span>
+          </Link>
+        ) : (
+          <Link to="/auth/login" className="link">
+            <span className="navButton">Login/Register</span>
+          </Link>
+        )}
       </span>
     </header>
   );
