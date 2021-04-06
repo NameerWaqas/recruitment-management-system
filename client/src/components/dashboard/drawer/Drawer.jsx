@@ -11,16 +11,18 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import HomeIcon from "@material-ui/icons/Home";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import SettingsIcon from "@material-ui/icons/Settings";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateAuth } from "../../../redux/reducers/authReducer";
 import PropTypes from "prop-types";
 import DrawerStyles from "./Drawer.style";
 import "./Drawer.css";
+import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
 
 const useStyles = DrawerStyles;
 
@@ -101,13 +103,22 @@ function Drawer({ children }) {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {[
+            { name: "Home", icon: <HomeIcon />, to: "/dashboard/user/" },
+            { name: "Inbox", icon: <InboxIcon />, to: "/dashboard/user/inbox" },
+            {
+              name: "Settings",
+              icon: <SettingsIcon />,
+              to: "/dashboard/user/settings",
+            },
+          ].map((obj, index) => (
+            <Link to={obj.to} key={index}>
+              <ListItem button>
+                {" "}
+                <ListItemIcon>{obj.icon}</ListItemIcon>
+                <ListItemText primary={obj.name} />
+              </ListItem>
+            </Link>
           ))}
         </List>
       </DrawerComp>

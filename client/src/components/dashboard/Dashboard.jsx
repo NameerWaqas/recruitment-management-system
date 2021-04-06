@@ -3,13 +3,13 @@ import { Redirect } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Spinner } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateAuth } from "../../redux/reducers/authReducer";
-import Candidate from "./Candiate";
+import Candidate from "./candidate/Candiate";
+import Recruiter from "./drawer/Recruiter";
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
 
   const getUserData = async () => {
     return await axios.get("http://localhost:1337/users/me", {
@@ -21,8 +21,9 @@ function Dashboard() {
   };
 
   const { data, isLoading } = useQuery("userInfo", getUserData, {
-    onSettled: (data) =>
-      dispatch(updateAuth({ user: true, userData: data?.data.user })),
+    onSettled: (data) => {
+      dispatch(updateAuth({ user: true, userData: data?.data }));
+    },
   });
 
   {
@@ -37,7 +38,19 @@ function Dashboard() {
       );
     }
   }
-  return <>{user || data ? <Candidate /> : <Redirect to="/auth/login" />}</>;
+  return (
+    <>
+      {data ? (
+        data.data.type == "candidate" ? (
+          <Candidate />
+        ) : (
+          <Recruiter />
+        )
+      ) : (
+        <Redirect to="/auth/login" />
+      )}
+    </>
+  );
 }
 
 export default Dashboard;

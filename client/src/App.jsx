@@ -15,6 +15,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 // Create a client
 const queryClient = new QueryClient();
 function App() {
+  // localStorage.removeItem("jwt");
   return (
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
