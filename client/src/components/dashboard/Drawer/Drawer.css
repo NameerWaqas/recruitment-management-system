@@ -1,0 +1,17 @@
+#logoutButton {
+  background-color: inherit;
+  padding: 10px;
+  color: white;
+  border: hidden;
+  border-width: 0.1em;
+  border-radius: 20px;
+  font-size: 120%;
+}
+
+#logoutButton:hover {
+  transition: 200ms;
+  height: "10vh" !important;
+  background-color: white;
+  padding: 10px;
+  color: black;
+}

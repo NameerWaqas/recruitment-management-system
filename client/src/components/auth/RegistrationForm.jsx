@@ -8,6 +8,9 @@ import {
 } from "reactstrap";
 import { useMutation } from "react-query";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { updateAuth } from "../../redux/reducers/authReducer";
 
 function RegistrationForm() {
   const [username, setUsername] = useState("");
@@ -15,23 +18,33 @@ function RegistrationForm() {
   const [type, setType] = useState("");
   const [password, setPassword] = useState("recruiter");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const history = useHistory();
+  const dispatch = useDispatch();
   const mutation = useMutation(async (user) => {
     return await axios.post("http://localhost:1337/auth/local/register", user);
   });
 
   useEffect(() => {
-    console.log("user Data :>> ", mutation.data);
+    console.log("user Data :>> ", mutation);
   }, [mutation.data]);
 
   const handleSubmit = async () => {
     password == confirmPassword
-      ? mutation.mutate({
-          username,
-          email,
-          password,
-          type,
-        })
+      ? await mutation.mutate(
+          {
+            username,
+            email,
+            password,
+            type,
+          },
+          {
+            onSettled: async (data) => {
+              localStorage.setItem("jwt", data?.data?.jwt);
+              dispatch(updateAuth({ user: true, userData: data?.data.user }));
+              history.push("/dashboard/user");
+            },
+          }
+        )
       : null;
   };
   return (

@@ -6,7 +6,6 @@ import store from "./redux/store";
 import { Provider as ReduxProvider } from "react-redux";
 
 // Components import
-import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 
 // Utility component
@@ -23,7 +22,6 @@ function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <ThemeColor>
-            <Header />
             <Switch>
               <Route component={Home} exact path="/" />
               <Route component={Auth} path="/auth" />

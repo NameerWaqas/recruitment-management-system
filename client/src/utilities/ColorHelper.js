@@ -17,9 +17,4 @@ ThemeColor.propTypes = {
   children: PropTypes.shape().isRequired,
 };
 
-// Utility function that returns background and foreground color based on the current theme.
-export function colorHelper(type, element) {
-  console.log("type,element :>> ", type, element);
-}
-
 export default ThemeColor;

@@ -1,26 +1,11 @@
 import React from "react";
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAuth } from "../../redux/reducers/authReducer";
-
-const DashboardContent = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    dispatch(updateAuth({ user: false, userData: {} }));
-    history.push("/auth/login");
-  };
-  return (
-    <>
-      <h1>Dashboard</h1>
-      <Link onClick={() => handleLogout()}>Logout</Link>
-    </>
-  );
-};
+import Candidate from "./Candiate";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -52,9 +37,7 @@ function Dashboard() {
       );
     }
   }
-  return (
-    <>{user || data ? <DashboardContent /> : <Redirect to="/auth/login" />}</>
-  );
+  return <>{user || data ? <Candidate /> : <Redirect to="/auth/login" />}</>;
 }
 
 export default Dashboard;

@@ -1,10 +1,10 @@
 import React from "react";
-import { colorHelper } from "../../utilities/ColorHelper";
+import Header from "../header/Header";
 
 function Home() {
-  colorHelper();
   return (
     <>
+      <Header />
       <h1>Home</h1>
       <p>
         Lorem ad eu aute nisi mollit incididunt fugiat. Commodo quis culpa ad in

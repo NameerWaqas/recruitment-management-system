@@ -15,6 +15,7 @@ import RegistrationForm from "./RegistrationForm";
 // styles
 import "./styles/Auth.css";
 import { useSelector } from "react-redux";
+import Header from "../header/Header";
 
 function AuthContent() {
   const [isShowingModal, setShowModal] = useState(true);
@@ -80,7 +81,10 @@ function Auth() {
       {user && localStorage.getItem("jwt") ? (
         <Redirect to="/dashboard/user" />
       ) : (
-        <AuthContent />
+        <>
+          <Header />
+          <AuthContent />
+        </>
       )}
     </>
   );
