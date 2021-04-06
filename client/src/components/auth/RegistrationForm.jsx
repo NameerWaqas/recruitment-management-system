@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Input,
   Button,
@@ -23,10 +23,6 @@ function RegistrationForm() {
   const mutation = useMutation(async (user) => {
     return await axios.post("http://localhost:1337/auth/local/register", user);
   });
-
-  useEffect(() => {
-    console.log("user Data :>> ", mutation);
-  }, [mutation.data]);
 
   const handleSubmit = async () => {
     password == confirmPassword
