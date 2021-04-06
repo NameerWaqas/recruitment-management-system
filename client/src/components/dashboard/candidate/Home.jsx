@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -15,6 +15,7 @@ import Chip from "@material-ui/core/Chip";
 
 function Home() {
   const { userData } = useSelector((state) => state.auth);
+  const [showOpenings, setShowOpenings] = useState(true);
   const openingsData = [
     {
       title: "DB Administrator",
@@ -96,11 +97,12 @@ function Home() {
     const classes = useStyles();
     return (
       <div className={classes.root}>
-        <Accordion>
+        <Accordion expanded={showOpenings}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
+            onClick={() => setShowOpenings(!showOpenings)}
           >
             <Typography variant="h5">Current Openings</Typography>
           </AccordionSummary>
@@ -130,6 +132,7 @@ function Home() {
                               label={skill}
                               key={id}
                               className={classes.chip}
+                              onClick={() => {}}
                             />
                           );
                         })}
