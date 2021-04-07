@@ -15,8 +15,8 @@ import { updateAuth } from "../../redux/reducers/authReducer";
 function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [type, setType] = useState("");
-  const [password, setPassword] = useState("recruiter");
+  const [type, setType] = useState("recruiter");
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();

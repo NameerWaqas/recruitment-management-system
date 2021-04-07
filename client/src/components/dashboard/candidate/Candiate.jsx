@@ -10,7 +10,7 @@ function Candidate() {
     <Drawer>
       <Switch>
         <Route exact path="/dashboard/user/" component={Home} />
-        <Route path="/dashboard/user/inbox/" component={Inbox} />
+        <Route path="/dashboard/user/message-box/" component={Inbox} />
         <Route path="/dashboard/user/settings/" component={Settings} />
       </Switch>
     </Drawer>

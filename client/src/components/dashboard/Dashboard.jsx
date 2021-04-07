@@ -6,7 +6,7 @@ import { Spinner } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { updateAuth } from "../../redux/reducers/authReducer";
 import Candidate from "./candidate/Candiate";
-import Recruiter from "./drawer/Recruiter";
+import Recruiter from "./recruiter/Recruiter";
 
 function Dashboard() {
   const dispatch = useDispatch();
