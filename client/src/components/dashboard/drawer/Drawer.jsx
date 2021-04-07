@@ -14,8 +14,9 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import FiberNewIcon from "@material-ui/icons/FiberNew";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateAuth } from "../../../redux/reducers/authReducer";
 import PropTypes from "prop-types";
@@ -45,6 +46,8 @@ function Drawer({ children }) {
     history.push("/auth/login");
   };
 
+  const { userData } = useSelector((state) => state.auth);
+  console.log("(userData) :>> ", userData);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -105,7 +108,11 @@ function Drawer({ children }) {
         <List>
           {[
             { name: "Home", icon: <HomeIcon />, to: "/dashboard/user/" },
-            { name: "Inbox", icon: <InboxIcon />, to: "/dashboard/user/inbox" },
+            {
+              name: "Inbox",
+              icon: <InboxIcon />,
+              to: "/dashboard/user/message-box",
+            },
             {
               name: "Settings",
               icon: <SettingsIcon />,
@@ -120,6 +127,16 @@ function Drawer({ children }) {
               </ListItem>
             </Link>
           ))}
+          {userData.type === "recruiter" && (
+            <Link to="/dashboard/user/new-opening/">
+              <ListItem button>
+                <ListItemIcon>
+                  <FiberNewIcon />
+                </ListItemIcon>
+                <ListItemText primary="Create Job" />
+              </ListItem>
+            </Link>
+          )}
         </List>
       </DrawerComp>
       <main className={classes.content}>
