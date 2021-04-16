@@ -9,6 +9,7 @@ import JobDetails from "./JobDetails";
 import AcademicTest from "./AcademicTests";
 import TechnicalTest from "./TechnicalTest";
 import End from "./End";
+import { Hidden } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,17 +58,19 @@ export default function NewOpening() {
 
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+      <Hidden only="xs">
+        <Stepper activeStep={activeStep}>
+          {steps.map((label) => {
+            const stepProps = {};
+            const labelProps = {};
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Hidden>
       <div>
         {/* Here to place the component */}
         <Switch>

@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setErrorStatus] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ function LoginForm() {
   const history = useHistory();
 
   const handleSubmit = async () => {
+    setErrorStatus(false);
     await mutation.mutate(
       {
         identifier: email,
@@ -33,9 +35,13 @@ function LoginForm() {
       },
       {
         onSettled: async (data) => {
-          localStorage.setItem("jwt", data?.data?.jwt);
-          dispatch(updateAuth({ user: true, userData: data?.data.user }));
-          history.push("/dashboard/user");
+          if (data) {
+            localStorage.setItem("jwt", data?.data?.jwt);
+            dispatch(updateAuth({ user: true, userData: data?.data.user }));
+            history.push("/dashboard/user");
+          } else {
+            setErrorStatus(true);
+          }
         },
       }
     );
@@ -67,6 +73,11 @@ function LoginForm() {
           Login
         </Button>
       </div>
+      {isError && (
+        <h6 className="text-center pt-3 pb-0 mb-0 text-danger">
+          Invalid email or password
+        </h6>
+      )}
     </>
   );
 }
