@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "openings",
+  "info": {
+    "name": "Openings"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "record": {
+      "type": "json"
+    }
+  }
+}
