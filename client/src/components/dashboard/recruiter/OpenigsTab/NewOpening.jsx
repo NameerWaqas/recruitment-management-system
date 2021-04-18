@@ -10,6 +10,7 @@ import AcademicTest from "./AcademicTests";
 import TechnicalTest from "./TechnicalTest";
 import End from "./End";
 import { Hidden } from "@material-ui/core";
+import Fade from "react-reveal/Fade";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,17 +78,36 @@ export default function NewOpening() {
           <Route
             exact
             path="/dashboard/user/new-opening/"
-            component={JobDetails}
+            component={() => (
+              <Fade left>
+                <JobDetails />
+              </Fade>
+            )}
           />
           <Route
             path="/dashboard/user/new-opening/academic-test"
-            component={AcademicTest}
+            component={() => (
+              <Fade left>
+                <AcademicTest />
+              </Fade>
+            )}
           />
           <Route
             path="/dashboard/user/new-opening/technical-test"
-            component={TechnicalTest}
+            component={() => (
+              <Fade left>
+                <TechnicalTest />
+              </Fade>
+            )}
           />
-          <Route path="/dashboard/user/new-opening/end" component={End} />
+          <Route
+            path="/dashboard/user/new-opening/end"
+            component={() => (
+              <Fade left>
+                <End />
+              </Fade>
+            )}
+          />
         </Switch>
         <div>
           <div>
