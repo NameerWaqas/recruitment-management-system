@@ -12,7 +12,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const getUserData = async () => {
-    return await axios.get("http://localhost:1337/users/me", {
+    return await axios.get("http://localhost:5000/users/me", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -21,7 +21,7 @@ function Dashboard() {
   };
 
   const { data, isLoading } = useQuery("userInfo", getUserData, {
-    onSettled: (data) => {
+    onSuccess: (data) => {
       dispatch(updateAuth({ user: true, userData: data?.data }));
     },
   });
@@ -41,7 +41,7 @@ function Dashboard() {
   return (
     <>
       {data ? (
-        data.data.type == "candidate" ? (
+        data?.data?.type === "candidate" ? (
           <Candidate />
         ) : (
           <Recruiter />
