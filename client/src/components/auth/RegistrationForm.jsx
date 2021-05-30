@@ -21,7 +21,7 @@ function RegistrationForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const mutation = useMutation(async (user) => {
-    return await axios.post("http://localhost:1337/auth/local/register", user);
+    return await axios.post("http://localhost:5000/users/register", user);
   });
 
   const handleSubmit = async () => {
@@ -34,9 +34,9 @@ function RegistrationForm() {
             type,
           },
           {
-            onSettled: async (data) => {
-              localStorage.setItem("jwt", data?.data?.jwt);
-              dispatch(updateAuth({ user: true, userData: data?.data.user }));
+            onSuccess: async (res) => {
+              localStorage.setItem("jwt", res?.data?.jwt);
+              dispatch(updateAuth({ user: true, userData: res?.data?.user }));
               history.push("/dashboard/user");
             },
           }

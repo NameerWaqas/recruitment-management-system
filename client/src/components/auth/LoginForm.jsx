@@ -21,7 +21,7 @@ function LoginForm() {
 
   // React Query hook to perform server mutations.
   const mutation = useMutation((user) => {
-    return axios.post("http://localhost:1337/auth/local", user);
+    return axios.post("http://localhost:5000/users/login", user);
   });
 
   const history = useHistory();
@@ -30,14 +30,15 @@ function LoginForm() {
     setErrorStatus(false);
     await mutation.mutate(
       {
-        identifier: email,
+        email,
         password,
       },
       {
-        onSettled: async (data) => {
+        onSuccess: async (data) => {
+          console.log("data :>> ", data);
           if (data) {
             localStorage.setItem("jwt", data?.data?.jwt);
-            dispatch(updateAuth({ user: true, userData: data?.data.user }));
+            dispatch(updateAuth({ user: true, userData: data?.data }));
             history.push("/dashboard/user");
           } else {
             setErrorStatus(true);
