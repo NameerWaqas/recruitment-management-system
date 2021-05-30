@@ -1,35 +1,24 @@
 {
   "name": "server",
-  "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "strapi": "3.5.4",
-    "strapi-admin": "3.5.4",
-    "strapi-utils": "3.5.4",
-    "strapi-plugin-content-type-builder": "3.5.4",
-    "strapi-plugin-content-manager": "3.5.4",
-    "strapi-plugin-users-permissions": "3.5.4",
-    "strapi-plugin-email": "3.5.4",
-    "strapi-plugin-upload": "3.5.4",
-    "strapi-connector-mongoose": "3.5.4"
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.12"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "2b841408-42ec-4fe5-bfe2-012a56e2c150"
-  },
-  "engines": {
-    "node": ">=10.16.0 <=14.x.x",
-    "npm": "^6.0.0"
-  },
-  "license": "MIT"
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "nodemon": "^2.0.7"
+  }
 }
