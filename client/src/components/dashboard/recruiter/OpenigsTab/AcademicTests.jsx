@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Button, Grid, makeStyles, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -21,13 +21,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function AcademicTest() {
+function AcademicTest({ setQuiz }) {
   const [questions, setQuestions] = useState([]);
   const classes = useStyles();
   const setQuestion = (question) => {
     setQuestions(() => [...questions, question]);
   };
-
+  useCallback(() => {
+    setQuiz({ questions });
+  }, [questions]);
   return (
     <div
       className="bg-white pl-4"
@@ -186,6 +188,10 @@ const QuizCreator = ({ getQuestion }) => {
 
 QuizCreator.propTypes = {
   getQuestion: PropTypes.func,
+};
+
+AcademicTest.propTypes = {
+  setQuiz: PropTypes.func.isRequired,
 };
 
 export default AcademicTest;

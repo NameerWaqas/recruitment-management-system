@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -10,7 +10,9 @@ import AcademicTest from "./AcademicTests";
 import TechnicalTest from "./TechnicalTest";
 import End from "./End";
 import { Hidden } from "@material-ui/core";
-import Fade from "react-reveal/Fade";
+// import Fade from "react-reveal/Fade";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +36,27 @@ export default function NewOpening() {
   const [activeStep, setActiveStep] = React.useState(0);
   const history = useHistory();
   const steps = getSteps();
+  const [jobDetails, setJobDetails] = useState({});
+  const [quiz, setQuiz] = useState({});
+  const [technicalDes, setTechnicalDes] = useState({ id: 0 });
+
+  const { mutateAsync } = useMutation(async (payload) => {
+    await axios.post("http://localhost:5000/jobs", payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+  }, {});
+
+  // eslint-disable-next-line
+  const submitJob = () => {
+    mutateAsync({
+      ...jobDetails,
+      quiz,
+      technicalTest: technicalDes,
+    });
+  };
 
   const handleNext = () => {
     if (!activeStep) {
@@ -79,33 +102,33 @@ export default function NewOpening() {
             exact
             path="/dashboard/user/new-opening/"
             component={() => (
-              <Fade left>
-                <JobDetails />
-              </Fade>
+              // <Fade left>
+              <JobDetails setJobDetails={setJobDetails} />
+              // </Fade>
             )}
           />
           <Route
             path="/dashboard/user/new-opening/academic-test"
             component={() => (
-              <Fade left>
-                <AcademicTest />
-              </Fade>
+              // <Fade left>
+              <AcademicTest setQuiz={setQuiz} />
+              // </Fade>
             )}
           />
           <Route
             path="/dashboard/user/new-opening/technical-test"
             component={() => (
-              <Fade left>
-                <TechnicalTest />
-              </Fade>
+              // <Fade left>
+              <TechnicalTest setTechnicalDes={setTechnicalDes} />
+              // </Fade>
             )}
           />
           <Route
             path="/dashboard/user/new-opening/end"
             component={() => (
-              <Fade left>
-                <End />
-              </Fade>
+              // <Fade left>
+              <End />
+              // {/* </Fade> */}
             )}
           />
         </Switch>
