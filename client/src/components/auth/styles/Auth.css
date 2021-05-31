@@ -1,9 +1,12 @@
+#container {
+}
 #authContainer {
+  background-image: url("../../../Assets/Images/authPage.jpg");
+  background-size: cover;
   position: fixed;
   width: 100%;
   height: 90vh;
   top: 10vh;
-  background-color: #e9ecef;
 }
 
 .link {

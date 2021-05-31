@@ -124,7 +124,13 @@ function RegistrationForm() {
       </InputGroup>
       <br />
       <div className="text-center">
-        <Button size="md" block color="success" onClick={handleSubmit}>
+        <Button
+          style={{ backgroundColor: "#023047" }}
+          size="md"
+          block
+          color="primary"
+          onClick={handleSubmit}
+        >
           Register
         </Button>
       </div>
