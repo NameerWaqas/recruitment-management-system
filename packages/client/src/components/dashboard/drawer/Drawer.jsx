@@ -47,7 +47,6 @@ function Drawer({ children }) {
   };
 
   const { userData } = useSelector((state) => state.auth);
-  console.log("(userData) :>> ", userData);
   return (
     <div className={classes.root}>
       <CssBaseline />

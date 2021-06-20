@@ -13,4 +13,8 @@ app.use(express.json());
 app.use("/users", auth);
 app.use("/jobs", jobs);
 
+app.get("/", (req, res) => {
+  res.status(200).send("Connected to server");
+});
+
 app.listen(5000);

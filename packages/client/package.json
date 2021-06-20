@@ -30,7 +30,7 @@
   "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "echo client test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

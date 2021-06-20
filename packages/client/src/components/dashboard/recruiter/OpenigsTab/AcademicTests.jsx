@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Button, Grid, makeStyles, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAcademicDetails } from "../../../../redux/reducers/newOpening";
 
 const useStyles = makeStyles(() => ({
   question: {
-    // fontSize: "70%",
     marginBottom: "10px",
   },
   options: {
@@ -22,14 +23,20 @@ const useStyles = makeStyles(() => ({
 }));
 
 function AcademicTest({ setQuiz }) {
+  const dispatch = useDispatch();
+
   const [questions, setQuestions] = useState([]);
   const classes = useStyles();
+
   const setQuestion = (question) => {
     setQuestions(() => [...questions, question]);
+    dispatch(updateAcademicDetails({ AD: question }));
   };
+
   useCallback(() => {
     setQuiz({ questions });
   }, [questions]);
+
   return (
     <div
       className="bg-white pl-4"
