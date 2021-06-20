@@ -4,6 +4,7 @@ const quizNS = require("../models/quiz");
 const technicalTestNS = require("../models/technicalTest");
 const authenticate = require("../utils/verifyToken");
 const express = require("express");
+const quiz = require("../models/quiz");
 
 const router = express.Router();
 
@@ -11,6 +12,8 @@ router.get("/", authenticate, async (req, res) => {
   try {
     if (req?.user) {
       // sending all registered jobs in response
+      const JDs = await jobsNS.find();
+      return res.status(200).json(JDs);
     }
     return res.status(403).send();
   } catch {
@@ -18,18 +21,34 @@ router.get("/", authenticate, async (req, res) => {
   }
 });
 
+router.get("/quiz", authenticate, async (req, res) => {
+  try {
+    if (req?.user) {
+      let { quizId } = req.query || "";
+      const quiz = await quizNS.findOne({ jobId: quizId });
+      const { questions } = quiz || "";
+      return res.status(200).json(questions || []);
+    } else {
+      res.status(403).send();
+    }
+  } catch {
+    res.status(500).send("Internal server error");
+  }
+});
+
 router.post("/", authenticate, async (req, res) => {
   try {
     const {
       title,
-      job_type,
-      role_type,
+      jobType,
+      organization,
       openings,
       country,
       city,
       description,
       academic_test: questions,
       technical_test,
+      skills,
     } = req?.body || "";
     const { id: technicalTestId } = technical_test || "";
 
@@ -44,11 +63,12 @@ router.post("/", authenticate, async (req, res) => {
           identifier: record?.email,
           description,
           title,
-          job_type,
-          role_type,
+          job_type: jobType,
+          organization,
           openings,
           country,
           city,
+          skills,
         })
       ).toJSON();
 
