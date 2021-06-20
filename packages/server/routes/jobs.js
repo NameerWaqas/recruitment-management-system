@@ -28,10 +28,9 @@ router.post("/", authenticate, async (req, res) => {
       country,
       city,
       description,
-      quiz,
+      academic_test: questions,
       technical_test,
     } = req?.body || "";
-    const { questions } = quiz || "";
     const { id: technicalTestId } = technical_test || "";
 
     if (req?.user) {

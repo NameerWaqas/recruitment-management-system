@@ -11,6 +11,9 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+
+import { updateJobDetails } from "../../../../redux/reducers/newOpening";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -32,26 +35,34 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function JobDetails({ setJobDetails }) {
+function JobDetails() {
+  const dispatch = useDispatch();
+  const { jobDetails } = useSelector((state) => state.newOpening);
+
   const [jobStart, setJobStart] = useState(new Date());
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [openings, setOpening] = useState(1);
   const [roleType, setRoleType] = useState("");
-  // const [jobType, setJobType] = useState("");
+  const [jobType, setJobType] = useState("Full time");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
 
-  const updateJobDetails = () => {
-    setJobDetails({
-      city,
-      country,
-      description,
-      jobStart,
-      openings,
-      roleType,
-      title,
-    });
+  const updateReducer = () => {
+    dispatch(
+      updateJobDetails({
+        JD: {
+          city,
+          country,
+          description,
+          // jobStart,
+          openings,
+          roleType,
+          jobType,
+          title,
+        },
+      })
+    );
   };
 
   const classes = useStyles();
@@ -60,7 +71,7 @@ function JobDetails({ setJobDetails }) {
       <Grid container spacing={2}>
         <Grid item md={4} sm={6} xs={12}>
           <TextField
-            onBlur={updateJobDetails}
+            onBlur={updateReducer}
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             value={title}
@@ -72,8 +83,8 @@ function JobDetails({ setJobDetails }) {
         </Grid>
         <Grid item md={4} sm={6} xs={12}>
           <TextField
-            onBlur={(e) => updateJobDetails(e.target.value)}
-            onChange={setRoleType}
+            onBlur={updateReducer}
+            onChange={(e) => setRoleType(e.target.value)}
             type="text"
             value={roleType}
             variant="outlined"
@@ -84,8 +95,8 @@ function JobDetails({ setJobDetails }) {
         </Grid>
         <Grid item md={4} sm={6} xs={12}>
           <TextField
-            onBlur={(e) => updateJobDetails(e.target.value)}
-            onChange={setOpening}
+            onBlur={updateReducer}
+            onChange={(e) => setOpening(e.target.value)}
             type="text"
             value={openings}
             variant="outlined"
@@ -107,8 +118,8 @@ function JobDetails({ setJobDetails }) {
         </Grid>
         <Grid item md={4} sm={6} xs={12}>
           <TextField
-            onBlur={(e) => updateJobDetails(e.target.value)}
-            onChange={setCountry}
+            onBlur={updateReducer}
+            onChange={(e) => setCountry(e.target.value)}
             type="text"
             value={country}
             variant="outlined"
@@ -119,8 +130,8 @@ function JobDetails({ setJobDetails }) {
         </Grid>{" "}
         <Grid item md={4} sm={6} xs={12}>
           <TextField
-            onBlur={(e) => updateJobDetails(e.target.value)}
-            onChange={setCity}
+            onBlur={updateReducer}
+            onChange={(e) => setCity(e.target.value)}
             type="text"
             value={city}
             variant="outlined"
@@ -131,7 +142,7 @@ function JobDetails({ setJobDetails }) {
         </Grid>
         <Grid item md={12} sm={12} xs={12}>
           <TextField
-            onBlur={updateJobDetails}
+            onBlur={updateReducer}
             onChange={(e) => setDescription(e.target.value)}
             type="text"
             value={description}

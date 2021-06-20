@@ -30,6 +30,7 @@ function AuthContent() {
     setShowModal(!isShowingModal);
     history.push("/");
   };
+
   return (
     <div id="authContainer">
       <Modal isOpen={isShowingModal} toggle={toggleModal}>
