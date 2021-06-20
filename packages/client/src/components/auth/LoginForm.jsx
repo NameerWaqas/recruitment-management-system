@@ -11,6 +11,7 @@ import axios from "axios";
 import { updateAuth } from "../../redux/reducers/authReducer";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { attachToken } from "../../Fetcher/fetch";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -35,9 +36,9 @@ function LoginForm() {
       },
       {
         onSuccess: async (data) => {
-          console.log("data :>> ", data);
           if (data) {
             localStorage.setItem("jwt", data?.data?.jwt);
+            attachToken(data?.data?.jwt);
             dispatch(updateAuth({ user: true, userData: data?.data }));
             history.push("/dashboard/user");
           } else {
