@@ -24,6 +24,10 @@ function Dashboard() {
     onSuccess: (data) => {
       dispatch(updateAuth({ user: true, userData: data?.data }));
     },
+    onError: () => {
+      console.log("error");
+      localStorage.removeItem("jwt");
+    },
   });
 
   {

@@ -81,10 +81,10 @@ function Auth() {
       {user && localStorage.getItem("jwt") ? (
         <Redirect to="/dashboard/user" />
       ) : (
-        <>
+        <div id="container">
           <Header />
           <AuthContent />
-        </>
+        </div>
       )}
     </>
   );
