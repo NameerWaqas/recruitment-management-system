@@ -3,8 +3,11 @@ import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { useSelector } from "react-redux";
+import { useQuery } from "react-query";
+import { useHistory } from "react-router";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -13,68 +16,14 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from "@material-ui/core/Chip";
 
+import { getJobs } from "../../../Fetcher/candidate.fetch";
+
 function Home() {
   const { userData } = useSelector((state) => state.auth);
   const [showOpenings, setShowOpenings] = useState(true);
-  const openingsData = [
-    {
-      title: "DB Administrator",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "VentureDive",
-      type: "Internship",
-      skills: ["SQL", "MySQL", "Oracle", "RDBMS"],
-    },
-    {
-      title: "Software Engineer",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "10Pearls",
-      type: "Full time",
-      skills: ["Python", "Django", "REST", "Django REST", "GraphQL"],
-    },
-    {
-      title: "Backend Engineer",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "Folio3",
-      type: "Internship",
-      skills: ["JavaScript", "NodeJS", "Express", "REST API"],
-    },
-    {
-      title: "Project Manager",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "Afiniti",
-      type: "Remote",
-      skills: [
-        "Agile",
-        "Team Management",
-        "Scrum",
-        "Selinium",
-        "Waterfall model",
-        "SQA",
-        "Unit testing",
-      ],
-    },
-    {
-      title: "Front-End Developer",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "Contour",
-      type: "Internship",
-      skills: ["HTML", "CSS", "JavaScript", "React", "Redux", "Bootstrap"],
-    },
-    {
-      title: "Graphic Designer",
-      description:
-        "Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.Dolore non do incididunt culpa do.",
-      company: "",
-      type: "Contract",
-      skills: ["Adobe XD", "Adobe PS3", "Zeplin", "Wireframes", "UI", "UX"],
-    },
-  ];
 
+  const history = useHistory();
+  const { data: openingsData } = useQuery([], getJobs);
   const header = (
     <Paper className="p-3 mb-3">
       <h4 className="my-0 py-0">
@@ -93,7 +42,8 @@ function Home() {
     },
     chip: { margin: "3px", color: "#023047" },
   }));
-  const openigsSection = () => {
+
+  const openingsSection = () => {
     const classes = useStyles();
     return (
       <div className={classes.root}>
@@ -119,14 +69,22 @@ function Home() {
                         <Typography variant="p">{item.description}</Typography>
                         <hr className="bg-white" />
                         <Typography variant="p">
-                          <b>Organization: {item.company}</b>
+                          <b>Organization: {item.organization}</b>
                         </Typography>
                         <br />
                         <Typography variant="p">
-                          <b>Position type: {item.type}</b>
+                          <b>Position type: {item.job_type}</b>
                         </Typography>
                         <hr className="mb-2 bg-white" />
-                        {item.skills.map((skill, id) => {
+                        {/* {item.skills.map((skill, id) => { */}
+                        {[
+                          "HTML",
+                          "CSS",
+                          "JavaScript",
+                          "React",
+                          "Redux",
+                          "Bootstrap",
+                        ].map((skill, id) => {
                           return (
                             <Chip
                               label={skill}
@@ -136,6 +94,13 @@ function Home() {
                             />
                           );
                         })}
+                        <hr className="mb-2 bg-white" />
+                        <Button
+                          onClick={() => history.push(`/dashboard/user/quiz/1`)}
+                          style={{ backgroundColor: "white", color: "#023047" }}
+                        >
+                          Apply Now
+                        </Button>
                       </CardContent>
                     </Card>
                   </Grid>
@@ -150,7 +115,7 @@ function Home() {
   return (
     <>
       {header}
-      {openigsSection()}
+      {openingsSection()}
     </>
   );
 }

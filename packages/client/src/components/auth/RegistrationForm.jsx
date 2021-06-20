@@ -11,6 +11,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateAuth } from "../../redux/reducers/authReducer";
+import { attachToken } from "../../Fetcher/fetch";
 
 function RegistrationForm() {
   const [username, setUsername] = useState("");
@@ -36,6 +37,7 @@ function RegistrationForm() {
           {
             onSuccess: async (res) => {
               localStorage.setItem("jwt", res?.data?.jwt);
+              attachToken(res?.data?.jwt);
               dispatch(updateAuth({ user: true, userData: res?.data?.user }));
               history.push("/dashboard/user");
             },

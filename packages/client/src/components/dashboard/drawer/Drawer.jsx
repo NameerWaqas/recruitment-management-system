@@ -138,7 +138,7 @@ function Drawer({ children }) {
           )}
         </List>
       </DrawerComp>
-      <main className={classes.content}>
+      <main className={classes.content} style={{ padding: 0 }}>
         <div className={classes.toolbar} />
         {children}
       </main>

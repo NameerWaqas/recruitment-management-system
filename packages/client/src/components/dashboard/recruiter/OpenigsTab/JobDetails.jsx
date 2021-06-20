@@ -43,7 +43,7 @@ function JobDetails() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [openings, setOpening] = useState(1);
-  const [roleType, setRoleType] = useState("");
+  const [organization, organizationName] = useState("");
   const [jobType, setJobType] = useState("Full time");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
@@ -55,9 +55,8 @@ function JobDetails() {
           city,
           country,
           description,
-          // jobStart,
           openings,
-          roleType,
+          organization,
           jobType,
           title,
         },
@@ -84,11 +83,11 @@ function JobDetails() {
         <Grid item md={4} sm={6} xs={12}>
           <TextField
             onBlur={updateReducer}
-            onChange={(e) => setRoleType(e.target.value)}
+            onChange={(e) => organizationName(e.target.value)}
             type="text"
-            value={roleType}
+            value={organization}
             variant="outlined"
-            label="Role Type"
+            label="Organization"
             size="small"
             style={{ width: "100%" }}
           />

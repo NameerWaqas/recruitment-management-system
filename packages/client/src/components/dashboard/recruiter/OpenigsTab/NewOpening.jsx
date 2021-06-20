@@ -54,17 +54,15 @@ export default function NewOpening() {
     },
     {
       onSuccess: (data) => {
-        console.log("data :>> ", data);
         history.push("/dashboard/user/");
       },
     }
   );
-
   useEffect(() => {
     if (submitNewOpening) {
-      console.log(true);
       mutateAsync({
         ...jobDetails,
+        skills: ["HTML", "CSS", "JavaScript", "React", "Redux", "Bootstrap"],
         academic_test: academicDetails,
         technical_test: technicalDetails,
       });
