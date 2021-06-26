@@ -19,6 +19,7 @@ function Dashboard() {
       },
     });
   };
+  console.log('localStorage.getItem("jwt") :>> ', localStorage.getItem("jwt"));
 
   const { data, isLoading } = useQuery("userInfo", getUserData, {
     onSuccess: (data) => {
@@ -51,7 +52,7 @@ function Dashboard() {
           <Recruiter />
         )
       ) : (
-        <Redirect to="/auth/login" />
+        <Redirect to="/" />
       )}
     </>
   );

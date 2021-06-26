@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  Nav,
-  NavItem,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  NavLink,
-} from "reactstrap";
-import { Switch, Route, useHistory, Link, Redirect } from "react-router-dom";
+import { Nav, NavItem, NavLink } from "reactstrap";
+import { Link, Redirect } from "react-router-dom";
 import classnames from "classnames";
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
@@ -18,59 +11,61 @@ import { useSelector } from "react-redux";
 import Header from "../header/Header";
 
 function AuthContent() {
-  const [isShowingModal, setShowModal] = useState(true);
-  const [activeTab, setActiveTab] = useState("1");
-  const history = useHistory();
+  const [activeTab, setActiveTab] = useState("2");
 
   const toggleTabs = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
-  const toggleModal = () => {
-    setShowModal(!isShowingModal);
-    history.push("/");
-  };
-
   return (
     <div id="authContainer">
-      <Modal isOpen={isShowingModal} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Authentication</ModalHeader>
-        <Nav tabs>
-          <NavItem className="w-50">
-            <Link
-              onClick={() => {
-                toggleTabs("1");
+      <Nav tabs>
+        <NavItem className="w-50">
+          <Link
+            onClick={() => {
+              toggleTabs("1");
+            }}
+            to="/"
+            className="link"
+          >
+            <NavLink
+              className={classnames({ active: activeTab === "1" })}
+              style={{
+                border: 0,
+                backgroundColor: activeTab === "1" ? "#343a40" : "#495057",
+                color: "white",
               }}
-              to="/auth/login"
-              className="link"
             >
-              <NavLink className={classnames({ active: activeTab === "1" })}>
-                Login
-              </NavLink>
-            </Link>
-          </NavItem>
+              Login
+            </NavLink>
+          </Link>
+        </NavItem>
 
-          <NavItem className="w-50">
-            <Link
-              onClick={() => {
-                toggleTabs("2");
+        <NavItem className="w-50">
+          <Link
+            onClick={() => {
+              toggleTabs("2");
+            }}
+            to="/"
+            className="link"
+          >
+            <NavLink
+              className={classnames({ active: activeTab === "2" })}
+              style={{
+                border: 0,
+                borderColor: "transparent",
+                backgroundColor: activeTab === "2" ? "#343a40" : "#495057",
+                color: "white",
               }}
-              to="/auth/register"
-              className="link"
             >
-              <NavLink className={classnames({ active: activeTab === "2" })}>
-                Register
-              </NavLink>
-            </Link>
-          </NavItem>
-        </Nav>
-        <ModalBody>
-          <Switch>
-            <Route exact path="/auth/login" component={LoginForm} />
-            <Route exact path="/auth/register" component={RegistrationForm} />
-          </Switch>
-        </ModalBody>
-      </Modal>
+              Register
+            </NavLink>
+          </Link>
+        </NavItem>
+      </Nav>
+      <div style={{ padding: "10px" }}>
+        {activeTab === "1" ? <LoginForm /> : <RegistrationForm />}
+      </div>
     </div>
   );
 }
@@ -91,4 +86,4 @@ function Auth() {
   );
 }
 
-export default Auth;
+export default AuthContent;

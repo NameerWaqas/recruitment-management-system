@@ -1,19 +1,19 @@
 #container {
 }
 #authContainer {
-  background-image: url("../../../Assets/Images/authPage.jpg");
-  background-size: cover;
-  position: fixed;
-  width: 100%;
-  height: 90vh;
-  top: 10vh;
+  background-color: #343a40;
+  width: 80%;
+  border-radius: 10px;
+  /* box-shadow: -1px -1px 10px #6c757d, 1px 1px 10px #6c757d; */
+  margin: 0;
+  overflow: hidden;
 }
 
 .link {
-  text-decoration: none;
-  color: black;
+  /* text-decoration: none; */
 }
 .link:hover {
+  border-radius: 20px;
   text-decoration: none;
   color: black;
 }

@@ -2,17 +2,17 @@
   display: flex;
   flex-direction: row;
   flex: 1;
-  background-color: #023047;
-  color: white;
+  background-color: #343a40;
+  color: #212529;
   padding-left: 10px;
   justify-content: space-between;
-  box-shadow: 0 1px 3px 1px #adb5bd;
+  /* box-shadow: 0 1px 3px 1px #adb5bd; */
   height: 10vh;
   align-items: center;
 }
 #title {
   display: inline;
-  color: white;
+  color: #ffff;
   text-decoration: none;
 }
 #title:hover {

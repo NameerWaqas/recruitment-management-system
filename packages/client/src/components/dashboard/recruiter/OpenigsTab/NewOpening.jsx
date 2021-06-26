@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    backgroundColor: "white",
   },
   button: {
     marginRight: theme.spacing(1),

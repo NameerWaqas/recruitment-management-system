@@ -1,7 +1,22 @@
 #container {
-  /* width: 100%;
-  height: 100vh;
-  background-image: url("../../../Assets/Images/homeBG.jpg");
-  background-size: cover;
-  background-position: center; */
+  background-color: #212529;
+  color: white;
+}
+#contentSection {
+  display: flex;
+  background-image: url("../../../Assets/Images/graph.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30px;
+  height: 90vh;
+}
+
+#authSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }

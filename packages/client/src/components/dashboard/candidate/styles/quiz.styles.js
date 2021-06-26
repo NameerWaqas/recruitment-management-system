@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles({
   rightHalf: {
-    backgroundColor: "#F3F7F7",
+    backgroundColor: "#212529",
+    color: "white",
     margin: 0,
     padding: 0,
     height: "90vh",
@@ -35,6 +36,8 @@ export const useStyles = makeStyles({
     justifyContent: "space-between",
     paddingTop: "50px",
     paddingBottom: "100px",
+    backgroundColor: "#343a40",
+    color: "white",
   },
   stats: {
     display: "flex",

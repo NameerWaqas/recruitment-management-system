@@ -11,11 +11,15 @@ import Home from "./components/home/Home";
 // Utility component
 import ThemeColor from "./utilities/ColorHelper";
 import Dashboard from "./components/dashboard/Dashboard";
+import { attachToken } from "./Fetcher/fetch";
 
 // Create a client
 const queryClient = new QueryClient();
 function App() {
-  // localStorage.removeItem("jwt");
+  const token = localStorage.getItem("jwt");
+  if (token) {
+    attachToken(token);
+  }
   return (
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>

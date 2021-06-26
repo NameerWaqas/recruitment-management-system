@@ -72,10 +72,10 @@ function LoginForm() {
       <br />
       <div className="text-center">
         <Button
-          style={{ backgroundColor: "#023047" }}
+          style={{ backgroundColor: "#212529" }}
           size="md"
           block
-          color="primary"
+          // color="primary"
           onClick={handleSubmit}
         >
           Login

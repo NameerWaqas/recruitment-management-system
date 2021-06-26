@@ -3,9 +3,15 @@ import { useQuery } from "react-query";
 import Button from "@material-ui/core//Button";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "./styles/quiz.styles";
+import { useParams, useHistory } from "react-router";
 
-export default function QuizSection() {
+export default function PreQuiz() {
   const classes = useStyles();
+  const { id } = useParams();
+  const history = useHistory();
+  const onContinue = () => {
+    history.push(`/dashboard/user/quiz-start/${id}`);
+  };
   return (
     <>
       <Grid container>
@@ -41,7 +47,11 @@ export default function QuizSection() {
               before taking the main test.
             </li>
           </ol>
-          <Button className={classes.continueButton} variant="contained">
+          <Button
+            className={classes.continueButton}
+            variant="contained"
+            onClick={onContinue}
+          >
             Continue
           </Button>
         </Grid>
