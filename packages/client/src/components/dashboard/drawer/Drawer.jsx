@@ -43,7 +43,7 @@ function Drawer({ children }) {
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     dispatch(updateAuth({ user: false, userData: {} }));
-    history.push("/auth/login");
+    history.push("/");
   };
 
   const { userData } = useSelector((state) => state.auth);
@@ -56,7 +56,7 @@ function Drawer({ children }) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar style={{ backgroundColor: "#023047", height: "10vh" }}>
+        <Toolbar style={{ backgroundColor: "#343a40", height: "10vh" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -106,15 +106,19 @@ function Drawer({ children }) {
         <Divider />
         <List>
           {[
-            { name: "Home", icon: <HomeIcon />, to: "/dashboard/user/" },
+            {
+              name: "Home",
+              icon: <HomeIcon style={{ color: "white" }} />,
+              to: "/dashboard/user/",
+            },
             {
               name: "Inbox",
-              icon: <InboxIcon />,
+              icon: <InboxIcon style={{ color: "white" }} />,
               to: "/dashboard/user/message-box",
             },
             {
               name: "Settings",
-              icon: <SettingsIcon />,
+              icon: <SettingsIcon style={{ color: "white" }} />,
               to: "/dashboard/user/settings",
             },
           ].map((obj, index) => (
@@ -130,7 +134,7 @@ function Drawer({ children }) {
             <Link to="/dashboard/user/new-opening/">
               <ListItem button>
                 <ListItemIcon>
-                  <FiberNewIcon />
+                  <FiberNewIcon style={{ color: "white" }} />
                 </ListItemIcon>
                 <ListItemText primary="Create Job" />
               </ListItem>

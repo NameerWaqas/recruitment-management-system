@@ -35,12 +35,14 @@ function Home() {
   const useStyles = makeStyles(() => ({
     root: {
       width: "100%",
+      backgroundColor: "#343a40",
     },
     openings: {
-      backgroundColor: "#023047",
+      backgroundColor: "#343a40",
       color: "white",
+      boxShadow: " -1px -1px 10px #d1d7e0, 1px 1px 10px #d1d7e0",
     },
-    chip: { margin: "3px", color: "#023047" },
+    chip: { margin: "3px", color: "#343a40", backgroundColor: "white" },
   }));
 
   const openingsSection = () => {
@@ -59,7 +61,7 @@ function Home() {
 
           <AccordionDetails>
             <Grid container spacing={2}>
-              {openingsData.map((item, index) => {
+              {openingsData?.map((item, index) => {
                 return (
                   <Grid item md={4} key={index}>
                     <Card className={classes.openings}>
@@ -96,7 +98,9 @@ function Home() {
                         })}
                         <hr className="mb-2 bg-white" />
                         <Button
-                          onClick={() => history.push(`/dashboard/user/quiz/1`)}
+                          onClick={() =>
+                            history.push(`/dashboard/user/quiz/${item?._id}`)
+                          }
                           style={{ backgroundColor: "white", color: "#023047" }}
                         >
                           Apply Now
@@ -113,10 +117,10 @@ function Home() {
     );
   };
   return (
-    <>
+    <div style={{ padding: "10px" }}>
       {header}
       {openingsSection()}
-    </>
+    </div>
   );
 }
 export default Home;

@@ -66,7 +66,11 @@ function JobDetails() {
 
   const classes = useStyles();
   return (
-    <div id="container" className={`p-3 ${classes.container}`}>
+    <div
+      id="container"
+      className={`p-3 ${classes.container}`}
+      style={{ backgroundColor: "white" }}
+    >
       <Grid container spacing={2}>
         <Grid item md={4} sm={6} xs={12}>
           <TextField
