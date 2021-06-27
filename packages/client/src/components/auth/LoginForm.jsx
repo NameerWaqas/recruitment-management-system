@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { attachToken } from "../../Fetcher/fetch";
 
-function LoginForm() {
+function LoginForm({ flipCard }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setErrorStatus] = useState(false);
@@ -45,13 +45,16 @@ function LoginForm() {
             setErrorStatus(true);
           }
         },
+        onerror: () => {
+          setErrorStatus(true);
+        },
       }
     );
   };
 
   return (
     <>
-      <h2 className="text-center">Sign in to your account</h2>
+      <h3 className="text-center">Sign in to your account</h3>
       <InputGroup>
         <InputGroupAddon addonType="prepend">
           <InputGroupText>@</InputGroupText>
@@ -81,8 +84,16 @@ function LoginForm() {
           Login
         </Button>
       </div>
+      <Button
+        color="link"
+        style={{ color: "white" }}
+        block
+        onClick={() => flipCard((prev) => !prev)}
+      >
+        Don't have account?
+      </Button>
       {isError && (
-        <h6 className="text-center pt-3 pb-0 mb-0 text-danger">
+        <h6 className="text-center pb-0 mb-0 text-danger">
           Invalid email or password
         </h6>
       )}
