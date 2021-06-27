@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import { updateAuth } from "../../redux/reducers/authReducer";
 import { attachToken } from "../../Fetcher/fetch";
 
-function RegistrationForm() {
+function RegistrationForm({ flipCard }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("recruiter");
@@ -26,7 +26,8 @@ function RegistrationForm() {
   });
 
   const handleSubmit = async () => {
-    password == confirmPassword
+    // eslint-disable-next-line
+    password === confirmPassword
       ? await mutation.mutate(
           {
             username,
@@ -135,6 +136,14 @@ function RegistrationForm() {
           Register
         </Button>
       </div>
+      <Button
+        color="link"
+        style={{ color: "white" }}
+        block
+        onClick={() => flipCard((prev) => !prev)}
+      >
+        Already have account?
+      </Button>
     </>
   );
 }

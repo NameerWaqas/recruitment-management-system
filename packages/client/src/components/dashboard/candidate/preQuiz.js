@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 import Button from "@material-ui/core//Button";
 import Grid from "@material-ui/core/Grid";
-import { useStyles } from "./styles/quiz.styles";
+import { useStyles } from "./styles/preQuiz.styles";
 import { useParams, useHistory } from "react-router";
 
 export default function PreQuiz() {
