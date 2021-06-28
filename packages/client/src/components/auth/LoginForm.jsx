@@ -22,7 +22,7 @@ function LoginForm({ flipCard }) {
 
   // React Query hook to perform server mutations.
   const mutation = useMutation((user) => {
-    return axios.post("http://localhost:5000/users/login", user);
+    return axios.post("http://40.71.41.2/users/login", user);
   });
 
   const history = useHistory();
