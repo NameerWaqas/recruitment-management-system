@@ -22,7 +22,7 @@ function RegistrationForm({ flipCard }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const mutation = useMutation(async (user) => {
-    return await axios.post("http://localhost:5000/users/register", user);
+    return await axios.post("http://40.71.41.2/users/register", user);
   });
 
   const handleSubmit = async () => {

@@ -46,7 +46,7 @@ export default function NewOpening() {
   const { mutateAsync } = useMutation(
     async (payload) => {
       console.log("payload :>> ", payload);
-      await axios.post("http://localhost:5000/jobs", payload, {
+      await axios.post("http://40.71.41.2/jobs", payload, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
