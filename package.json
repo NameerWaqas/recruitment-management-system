@@ -14,14 +14,16 @@
     "lint-staged": "^11.0.0"
   },
   "scripts": {
-    "start": "lerna run start",
+    "start": "lerna run start --scope=client",
     "test": "lerna run test",
     "build": "lerna run build --scope=client",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@coreui/react": "^4.0.0-alpha.3",
     "nodemon": "^2.0.7",
     "react-card-flip": "^1.1.1",
+    "react-compound-timer": "^1.2.0",
     "react-reveal": "^1.2.2",
     "react-scripts": "^4.0.3",
     "react-typing-effect": "^2.0.5"

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles({
   rightHalf: {
-    backgroundColor: "#212529",
+    backgroundColor: "#0A0B18",
     color: "white",
     margin: 0,
     padding: 0,

@@ -100,7 +100,7 @@ function Drawer({ children }) {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            <ChevronLeftIcon style={{ color: "white" }} />
           </IconButton>
         </div>
         <Divider />
@@ -126,7 +126,7 @@ function Drawer({ children }) {
               <ListItem button>
                 {" "}
                 <ListItemIcon>{obj.icon}</ListItemIcon>
-                <ListItemText primary={obj.name} />
+                <ListItemText style={{ color: "white" }} primary={obj.name} />
               </ListItem>
             </Link>
           ))}
@@ -136,7 +136,7 @@ function Drawer({ children }) {
                 <ListItemIcon>
                   <FiberNewIcon style={{ color: "white" }} />
                 </ListItemIcon>
-                <ListItemText primary="Create Job" />
+                <ListItemText style={{ color: "white" }} primary="Create Job" />
               </ListItem>
             </Link>
           )}

@@ -25,7 +25,10 @@ function Home() {
   const history = useHistory();
   const { data: openingsData } = useQuery([], getJobs);
   const header = (
-    <Paper className="p-3 mb-3">
+    <Paper
+      className="p-3 mb-3"
+      style={{ backgroundColor: "#212529", color: "white" }}
+    >
       <h4 className="my-0 py-0">
         <Typography variant="h5">Welcome back! {userData.username}</Typography>
       </h4>
@@ -35,12 +38,12 @@ function Home() {
   const useStyles = makeStyles(() => ({
     root: {
       width: "100%",
-      backgroundColor: "#343a40",
+      backgroundColor: "#212529",
+      color: "white",
     },
     openings: {
-      backgroundColor: "#343a40",
+      backgroundColor: "#0A0B18",
       color: "white",
-      boxShadow: " -1px -1px 10px #d1d7e0, 1px 1px 10px #d1d7e0",
     },
     chip: { margin: "3px", color: "#343a40", backgroundColor: "white" },
   }));
@@ -48,78 +51,76 @@ function Home() {
   const openingsSection = () => {
     const classes = useStyles();
     return (
-      <div className={classes.root}>
-        <Accordion expanded={showOpenings}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            onClick={() => setShowOpenings(!showOpenings)}
-          >
-            <Typography variant="h5">Current Openings</Typography>
-          </AccordionSummary>
+      <Accordion expanded={showOpenings} className={classes.root}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+          onClick={() => setShowOpenings(!showOpenings)}
+        >
+          <Typography variant="h5">Current Openings</Typography>
+        </AccordionSummary>
 
-          <AccordionDetails>
-            <Grid container spacing={2}>
-              {openingsData?.map((item, index) => {
-                return (
-                  <Grid item md={4} key={index}>
-                    <Card className={classes.openings}>
-                      <CardContent>
-                        <Typography variant="h6">{item.title}</Typography>
-                        <hr className="bg-white pt-0 mt-0" />
-                        <Typography variant="p">{item.description}</Typography>
-                        <hr className="bg-white" />
-                        <Typography variant="p">
-                          <b>Organization: {item.organization}</b>
-                        </Typography>
-                        <br />
-                        <Typography variant="p">
-                          <b>Position type: {item.job_type}</b>
-                        </Typography>
-                        <hr className="mb-2 bg-white" />
-                        {/* {item.skills.map((skill, id) => { */}
-                        {[
-                          "HTML",
-                          "CSS",
-                          "JavaScript",
-                          "React",
-                          "Redux",
-                          "Bootstrap",
-                        ].map((skill, id) => {
-                          return (
-                            <Chip
-                              label={skill}
-                              key={id}
-                              className={classes.chip}
-                              onClick={() => {}}
-                            />
-                          );
-                        })}
-                        <hr className="mb-2 bg-white" />
-                        <Button
-                          onClick={() =>
-                            history.push(`/dashboard/user/quiz/${item?._id}`)
-                          }
-                          style={{ backgroundColor: "white", color: "#023047" }}
-                        >
-                          Apply Now
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </AccordionDetails>
-        </Accordion>
-      </div>
+        <AccordionDetails>
+          <Grid container spacing={2}>
+            {openingsData?.map((item, index) => {
+              return (
+                <Grid item md={4} key={index}>
+                  <Card className={classes.openings}>
+                    <CardContent>
+                      <Typography variant="h6">{item.title}</Typography>
+                      <hr className="bg-white pt-0 mt-0" />
+                      <Typography variant="p">{item.description}</Typography>
+                      <hr className="bg-white" />
+                      <Typography variant="p">
+                        <b>Organization: {item.organization}</b>
+                      </Typography>
+                      <br />
+                      <Typography variant="p">
+                        <b>Position type: {item.job_type}</b>
+                      </Typography>
+                      <hr className="mb-2 bg-white" />
+                      {/* {item.skills.map((skill, id) => { */}
+                      {[
+                        "HTML",
+                        "CSS",
+                        "JavaScript",
+                        "React",
+                        "Redux",
+                        "Bootstrap",
+                      ].map((skill, id) => {
+                        return (
+                          <Chip
+                            label={skill}
+                            key={id}
+                            className={classes.chip}
+                            onClick={() => {}}
+                          />
+                        );
+                      })}
+                      <hr className="mb-2 bg-white" />
+                      <Button
+                        onClick={() =>
+                          history.push(`/dashboard/user/quiz/${item?._id}`)
+                        }
+                        style={{ backgroundColor: "white", color: "#023047" }}
+                      >
+                        Apply Now
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
     );
   };
   return (
-    <div style={{ padding: "10px" }}>
+    <div style={{ padding: "10px", backgroundColor: "#0A0B18" }}>
       {header}
-      {openingsSection()}
+      <>{openingsSection()}</>
     </div>
   );
 }
