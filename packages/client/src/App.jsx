@@ -1,17 +1,17 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Auth from "./components/auth/Auth";
+import Auth from "./container/auth/Auth";
 import store from "./redux/store";
 import { Provider as ReduxProvider } from "react-redux";
 
 // Components import
-import Home from "./components/home/Home";
+import Home from "./container/home/Home";
 
 // Utility component
 import ThemeColor from "./utilities/ColorHelper";
-import Dashboard from "./components/dashboard/Dashboard";
-import { attachToken } from "./Fetcher/fetch";
+import Dashboard from "./container/dashboard/Dashboard";
+import { attachToken } from "./fetcher/fetch";
 
 // Create a client
 const queryClient = new QueryClient();

@@ -11,7 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { CProgress, CProgressBar } from "@coreui/react";
 import { makeStyles } from "@material-ui/core";
 import Fade from "react-reveal/Fade";
-import DashCard from "../../card/card";
+import DashCard from "../../../components/card/card";
 
 const tempPassVsFail = [
   { day: "Monday", pass: 80, fail: 20 },

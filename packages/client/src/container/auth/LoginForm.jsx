@@ -11,7 +11,7 @@ import axios from "axios";
 import { updateAuth } from "../../redux/reducers/authReducer";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { attachToken } from "../../Fetcher/fetch";
+import { attachToken } from "../../fetcher/fetch";
 
 function LoginForm({ flipCard }) {
   const [email, setEmail] = useState("");

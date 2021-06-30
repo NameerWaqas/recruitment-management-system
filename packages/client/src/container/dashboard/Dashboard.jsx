@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { updateAuth } from "../../redux/reducers/authReducer";
 import Candidate from "./candidate/Candiate";
 import Recruiter from "./recruiter/Recruiter";
-import { getUserData } from "../../Fetcher/auth.fetch";
+import { getUserData } from "../../fetcher/auth.fetch";
 import { useSelector } from "react-redux";
 
 function Dashboard() {

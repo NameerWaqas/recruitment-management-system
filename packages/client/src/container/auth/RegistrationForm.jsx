@@ -11,7 +11,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateAuth } from "../../redux/reducers/authReducer";
-import { attachToken } from "../../Fetcher/fetch";
+import { attachToken } from "../../fetcher/fetch";
 
 function RegistrationForm({ flipCard }) {
   const [username, setUsername] = useState("");
