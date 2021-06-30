@@ -5,7 +5,7 @@
 }
 #contentSection {
   display: flex;
-  background-image: url("../../../Assets/Images/graph.png");
+  background-image: url("../../../assets/Images/graph.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left;

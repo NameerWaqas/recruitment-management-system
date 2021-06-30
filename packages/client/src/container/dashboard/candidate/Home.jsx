@@ -16,7 +16,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from "@material-ui/core/Chip";
 
-import { getJobs } from "../../../Fetcher/candidate.fetch";
+import { getJobs } from "../../../fetcher/candidate.fetch";
 
 function Home() {
   const { userData } = useSelector((state) => state.auth);

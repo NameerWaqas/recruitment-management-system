@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../header/Header";
+import Header from "../../components/header/Header";
 import ReactTypingEffect from "react-typing-effect";
 import Grid from "@material-ui/core/Grid";
 
