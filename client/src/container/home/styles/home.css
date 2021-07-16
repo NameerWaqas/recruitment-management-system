@@ -1,0 +1,23 @@
+#container {
+  /* 2nd color */
+  background-color: #0a0b18;
+  color: white;
+}
+#contentSection {
+  display: flex;
+  background-image: url("../../../assets/Images/graph.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30px;
+  height: 90vh;
+}
+
+#authSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
