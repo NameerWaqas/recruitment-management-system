@@ -1,0 +1,64 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@coreui/react": "^3.4.6",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "chart.js": "^3.3.2",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-calendar": "^3.4.0",
+    "react-card-flip": "^1.1.1",
+    "react-chartjs-2": "^3.0.3",
+    "react-compound-timer": "^1.2.0",
+    "react-dom": "^17.0.1",
+    "react-query": "^3.13.3",
+    "react-redux": "^7.2.3",
+    "react-reveal": "^1.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-textarea-autosize": "^8.3.2",
+    "react-typing-effect": "^2.0.5",
+    "reactstrap": "^8.9.0",
+    "redux-saga": "^1.1.3",
+    "web-vitals": "^1.1.1"
+  },
+  "scripts": {
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "react-scripts build",
+    "test": "echo client test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.1",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react": "^7.23.1"
+  }
+}

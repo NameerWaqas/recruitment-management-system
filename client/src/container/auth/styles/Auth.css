@@ -1,0 +1,18 @@
+#container {
+}
+#authContainer {
+  background-color: #343a40;
+  border-radius: 10px;
+  /* box-shadow: -1px -1px 10px #6c757d, 1px 1px 10px #6c757d; */
+  margin: 0;
+  overflow: hidden;
+}
+
+.link {
+  /* text-decoration: none; */
+}
+.link:hover {
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+}

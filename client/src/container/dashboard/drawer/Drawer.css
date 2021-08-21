@@ -1,0 +1,8 @@
+#logoutButton {
+  background-color: inherit;
+  padding: 10px;
+  color: white;
+  border: hidden;
+  border-width: 0.1em;
+  font-size: 120%;
+}
