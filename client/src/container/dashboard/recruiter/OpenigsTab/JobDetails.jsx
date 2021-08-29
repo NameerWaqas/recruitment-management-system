@@ -76,7 +76,7 @@ function JobDetails() {
     <div
       id="container"
       className={`p-3 ${classes.container}`}
-      style={{ backgroundColor: "#343a40" }}
+      style={{ backgroundColor: "#0A0B18" }}
     >
       <Grid container spacing={2}>
         <Grid item md={4} sm={6} xs={12}>

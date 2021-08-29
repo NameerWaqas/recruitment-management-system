@@ -9,12 +9,11 @@ const verifyToken = require("../utils/verifyToken");
 
 router.post("/register", async (req, res) => {
   try {
-    const { email, first_name, last_name, type, password } = req?.body;
+    const { email, username, type, password } = req?.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = {
       email,
-      first_name,
-      last_name,
+      username: username,
       password: hashedPassword,
       type,
     };
@@ -52,5 +51,12 @@ router.get("/me", verifyToken, async (req, res) => {
   }
   res.status(404).send();
 });
+
+// router.put('/update',verifyToken,async(req,res)=>{
+//   if(req?.user){
+//     const {}
+//     const user = await (await usersNS.updateOne({email:req?.user},{username:}))
+//   }
+// })
 
 module.exports = router;
