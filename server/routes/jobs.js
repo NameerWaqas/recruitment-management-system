@@ -1,10 +1,11 @@
 const jobsNS = require("../models/job");
 const userNS = require("../models/user");
 const quizNS = require("../models/quiz");
+const resultsNS = require("../models/results");
+const messagesNS = require("../models/messages");
 const technicalTestNS = require("../models/technicalTest");
 const authenticate = require("../utils/verifyToken");
 const express = require("express");
-const quiz = require("../models/quiz");
 const verifyToken = require("../utils/verifyToken");
 
 const router = express.Router();
@@ -98,10 +99,52 @@ router.get("/quiz", authenticate, async (req, res) => {
 
 router.post("/quiz", verifyToken, async (req, res) => {
   try {
-    const { quizId, answers } = req?.body;
-    const res = await quizNS.find({ quizId });
-    console.log("res :>> ", res);
-  } catch (e) {
+    const { jobId, userId, marks } = req?.body;
+    const res = await jobsNS.find({ _id: jobId });
+    const { identifier } = res[0];
+    await resultsNS.create({
+      jobId,
+      testOf: identifier,
+      givenBy: userId,
+      marks,
+    });
+    res.status(201).send("Successfully submitted test");
+  } catch {
+    res.status(500).send("Internal server error");
+  }
+});
+
+router.post("/messages", verifyToken, async (req, res) => {
+  try {
+    const { jobId, testOf, givenBy } = req?.body;
+    const job = await technicalTestNS.find({ jobId });
+    const { testId } = job[0] || "";
+    const candidate = await userNS.find({ _id: givenBy });
+    const recruiter = await userNS.find({ email: testOf });
+    await messagesNS.create({
+      to: candidate[0],
+      from: recruiter[0],
+      message: { type: "technical", link: testId },
+      candidate: givenBy,
+      recruiter: testOf,
+    });
+    return res.status(201).send("Message Sent");
+  } catch {
+    res.status(500).send("Internal server error");
+  }
+});
+
+router.get("/messages", verifyToken, async (req, res) => {
+  try {
+    const { id, type } = await req?.query;
+    if (type === "candidate") {
+      const messages = await messagesNS.find({ candidate: id });
+      res?.status(200).send(messages);
+    } else {
+      const messages = await messagesNS.find({ recruiter: id });
+      res?.status(200).send(messages);
+    }
+  } catch {
     res.status(500).send("Internal server error");
   }
 });

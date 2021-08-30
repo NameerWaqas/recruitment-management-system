@@ -7,3 +7,11 @@ export const getQuizById = async ({ queryKey }) => {
   });
   return data;
 };
+
+export const postQuiz = (payload) => {
+  try {
+    const { data } = privateAPI.post("/jobs/quiz", payload);
+  } catch (e) {
+    console.log("e :>> ", e);
+  }
+};

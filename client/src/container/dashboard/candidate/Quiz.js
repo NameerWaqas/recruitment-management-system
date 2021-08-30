@@ -6,16 +6,24 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Timer from "react-compound-timer";
 import { useParams } from "react-router";
-import { useQuery } from "react-query";
-import { getQuizById } from "../../../fetcher/quiz.fetch";
+import { useMutation, useQuery } from "react-query";
+import { useSelector } from "react-redux";
+import { getQuizById, postQuiz } from "../../../fetcher/quiz.fetch";
 
 export default function QuizSection() {
   const classes = useStyles();
   const { id } = useParams();
+  const { _id: userId } = useSelector((state) => state?.auth?.userData);
   const { data } = useQuery([`job-${id}-quiz`, id], getQuizById);
   const [selected, setSelected] = useState({});
+  const { mutate } = useMutation(postQuiz, {
+    onSuccess: (res) => {
+      console.log("res :>> ", res);
+    },
+  });
+
   const verifyAnswers = () => {
-    alert();
+    mutate({ jobId: id, userId, marks: 10 });
   };
 
   const timerSection = (
