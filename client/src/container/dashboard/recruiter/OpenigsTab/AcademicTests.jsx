@@ -79,9 +79,10 @@ const QuizCreator = ({ getQuestion }) => {
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
+  const [correct, setCorrect] = useState("a");
 
   const addQuestion = () => {
-    getQuestion({ description, option1, option2, option3, option4 });
+    getQuestion({ description, option1, option2, option3, option4, correct });
     setCreateQuestion(false);
   };
 
@@ -100,7 +101,7 @@ const QuizCreator = ({ getQuestion }) => {
         <TextField
           type="text"
           variant="outlined"
-          label="Option 1"
+          label="Option a"
           size="small"
           style={{ width: "100%" }}
           onChange={(e) => setOption1(e.target.value)}
@@ -110,7 +111,7 @@ const QuizCreator = ({ getQuestion }) => {
         <TextField
           type="text"
           variant="outlined"
-          label="Option 2"
+          label="Option b"
           size="small"
           style={{ width: "100%" }}
           onChange={(e) => setOption2(e.target.value)}
@@ -120,7 +121,7 @@ const QuizCreator = ({ getQuestion }) => {
         <TextField
           type="text"
           variant="outlined"
-          label="Option 3"
+          label="Option c"
           size="small"
           style={{ width: "100%" }}
           onChange={(e) => setOption3(e.target.value)}
@@ -130,10 +131,20 @@ const QuizCreator = ({ getQuestion }) => {
         <TextField
           type="text"
           variant="outlined"
-          label="Option 4"
+          label="Option d"
           size="small"
           style={{ width: "100%" }}
           onChange={(e) => setOption4(e.target.value)}
+        />
+      </Grid>
+      <Grid item md={8}>
+        <TextField
+          type="text"
+          variant="outlined"
+          label="Correct Option"
+          size="small"
+          style={{ width: "100%" }}
+          onChange={(e) => setCorrect(e.target.value)}
         />
       </Grid>
     </>

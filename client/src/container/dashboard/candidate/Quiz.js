@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
+import { Button, Grid, makeStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -13,6 +13,11 @@ export default function QuizSection() {
   const classes = useStyles();
   const { id } = useParams();
   const { data } = useQuery([`job-${id}-quiz`, id], getQuizById);
+  const [selected, setSelected] = useState({});
+  const verifyAnswers = () => {
+    alert();
+  };
+
   const timerSection = (
     <Grid container>
       <Grid
@@ -25,7 +30,17 @@ export default function QuizSection() {
           zIndex: "1",
         }}
       >
-        <Timer initialTime={1000 * 60 * 12} direction="backward">
+        a
+        <Timer
+          initialTime={1000 * 60 * data?.length}
+          direction="backward"
+          checkpoints={[
+            {
+              time: 0,
+              callback: verifyAnswers,
+            },
+          ]}
+        >
           {() => (
             <>
               <Typography
@@ -49,37 +64,39 @@ export default function QuizSection() {
     option3,
     option4,
   }) => (
-    // <Fade bottom>
     <Grid container justify="center">
       <Grid item md={11} className={classes.questionCard}>
         <Typography variant="h6">
           Question {i + 1}: {description}
         </Typography>
-        <RadioGroup name={description} onChange={() => {}}>
+        <RadioGroup
+          name={description}
+          onChange={(e) => setSelected({ ...selected, [i]: e.target.value })}
+          value={selected[i]}
+        >
           <FormControlLabel
             value={option1}
-            control={<Radio style={{ color: "grey" }} />}
+            control={<Radio style={{ color: "grey" }} value="a" />}
             label={option1}
           />
           <FormControlLabel
             value={option2}
-            control={<Radio style={{ color: "grey" }} />}
+            control={<Radio style={{ color: "grey" }} value="b" />}
             label={option2}
           />
           <FormControlLabel
             value={option3}
-            control={<Radio style={{ color: "grey" }} />}
+            control={<Radio style={{ color: "grey" }} value="c" />}
             label={option3}
           />
           <FormControlLabel
             value={option4}
-            control={<Radio style={{ color: "grey" }} />}
+            control={<Radio style={{ color: "grey" }} value="d" />}
             label={option4}
           />
         </RadioGroup>
       </Grid>
     </Grid>
-    // </Fade>
   );
 
   const questions = (
@@ -97,10 +114,30 @@ export default function QuizSection() {
     </div>
   );
 
+  const submit = (
+    <Grid container>
+      <Grid md={12} style={{ justifyContent: "center", display: "flex" }}>
+        <Button
+          onClick={verifyAnswers}
+          style={{
+            color: "white",
+            backgroundColor: "red",
+            marginBottom: "20px",
+            marginTop: "10px",
+          }}
+          variant="contained"
+        >
+          Submit
+        </Button>
+      </Grid>
+    </Grid>
+  );
+
   return (
     <div style={{ width: "100%", backgroundColor: "#0a0b18" }}>
       {timerSection}
       {questions}
+      {submit}
     </div>
   );
 }

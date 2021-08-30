@@ -52,11 +52,4 @@ router.get("/me", verifyToken, async (req, res) => {
   res.status(404).send();
 });
 
-// router.put('/update',verifyToken,async(req,res)=>{
-//   if(req?.user){
-//     const {}
-//     const user = await (await usersNS.updateOne({email:req?.user},{username:}))
-//   }
-// })
-
 module.exports = router;

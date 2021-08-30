@@ -5,6 +5,7 @@ const technicalTestNS = require("../models/technicalTest");
 const authenticate = require("../utils/verifyToken");
 const express = require("express");
 const quiz = require("../models/quiz");
+const verifyToken = require("../utils/verifyToken");
 
 const router = express.Router();
 
@@ -18,21 +19,6 @@ router.get("/", authenticate, async (req, res) => {
     return res.status(403).send();
   } catch {
     return res.status(500).send();
-  }
-});
-
-router.get("/quiz", authenticate, async (req, res) => {
-  try {
-    if (req?.user) {
-      let { quizId } = req.query || "";
-      const quiz = await quizNS.findOne({ jobId: quizId });
-      const { questions } = quiz || "";
-      return res.status(200).json(questions || []);
-    } else {
-      res.status(403).send();
-    }
-  } catch {
-    res.status(500).send("Internal server error");
   }
 });
 
@@ -92,6 +78,31 @@ router.post("/", authenticate, async (req, res) => {
     return res.status(403).send();
   } catch {
     return res.status(500).send();
+  }
+});
+
+router.get("/quiz", authenticate, async (req, res) => {
+  try {
+    if (req?.user) {
+      let { quizId } = req.query || "";
+      const quiz = await quizNS.findOne({ jobId: quizId });
+      const { questions } = quiz || "";
+      return res.status(200).json(questions || []);
+    } else {
+      res.status(403).send();
+    }
+  } catch {
+    res.status(500).send("Internal server error");
+  }
+});
+
+router.post("/quiz", verifyToken, async (req, res) => {
+  try {
+    const { quizId, answers } = req?.body;
+    const res = await quizNS.find({ quizId });
+    console.log("res :>> ", res);
+  } catch (e) {
+    res.status(500).send("Internal server error");
   }
 });
 
