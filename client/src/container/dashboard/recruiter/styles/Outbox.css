@@ -1,0 +1,10 @@
+.message {
+  color: white;
+  display: flex;
+  overflow: hidden;
+}
+
+.message:hover {
+  background-color: #343a40;
+  transition: 300ms;
+}

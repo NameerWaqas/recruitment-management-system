@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: "#343a40",
+    backgroundColor: "#0A0B18",
   },
   button: {
     marginRight: theme.spacing(1),
@@ -89,7 +89,7 @@ export default function NewOpening() {
   return (
     <div className={classes.root}>
       <Hidden only="xs">
-        <Stepper activeStep={activeStep} style={{ backgroundColor: "#343a40" }}>
+        <Stepper activeStep={activeStep} style={{ backgroundColor: "#0A0B18" }}>
           {steps.map((label) => {
             const stepProps = {};
             const labelProps = {};
