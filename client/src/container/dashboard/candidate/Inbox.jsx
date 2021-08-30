@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
+import { useSelector } from "react-redux";
+import { useQuery } from "react-query";
 import "./styles/inbox.css";
+import { getMessages } from "../../../fetcher/candidate.fetch";
 
 const Message = ({ details = {}, setShowMessage }) => {
   const { companyName = "VentureDive" } = details || "";
+  const { _id } = useSelector((state) => state?.auth?.userData);
+  const { data: messages } = useQuery(
+    [`messages-${_id}`, [_id, "candidate"]],
+    getMessages
+  );
+  console.log("data :>> ", messages);
   return (
     <Grid
       container
